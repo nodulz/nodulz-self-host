@@ -1,0 +1,27 @@
+image:
+  repository: ghcr.io/nodulz/nodulz
+  tag: ""
+  digest: "sha256:118394ad07cc7c96463916761cbbb3b52f2861278380929b60e41e4a7ed629de"
+imagePullSecrets: []
+publicUrl: http://localhost:3001
+database:
+  driver: sqlite
+# Instance Secret: ADMIN_USERNAME, ADMIN_EMAIL, ADMIN_PASSWORD,
+# BETTER_AUTH_SECRET and CREDENTIALS_ENCRYPTION_KEY for either database.
+# PostgreSQL also requires DATABASE_URL. Preserve the original keys across upgrades.
+existingSecret: ""
+persistence:
+  existingClaim: ""
+  storageClass: ""
+  size: 10Gi
+scripts:
+  enabled: false
+ingress:
+  enabled: false
+  className: ""
+  host: ""
+  tlsSecret: ""
+resources:
+  requests: {cpu: 100m, memory: 256Mi}
+  limits: {memory: 1Gi}
+extraEnv: []

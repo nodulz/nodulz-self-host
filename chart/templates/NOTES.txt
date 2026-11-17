@@ -1,0 +1,10 @@
+Nodulz uses one replica. Upgrades include a short interruption and database migrations.
+Back up your database, data volume and encryption secrets before upgrading.
+
+Local access:
+  kubectl -n {{ .Release.Namespace }} port-forward service/{{ .Release.Name }} 3001:3001
+
+Open http://localhost:3001 and sign in with the ADMIN_USERNAME and ADMIN_PASSWORD
+configured in your instance Secret. These values create the administrator only
+on the first start; changing them does not reset an existing account.
+Documentation: https://nodulz.com/docs/installation

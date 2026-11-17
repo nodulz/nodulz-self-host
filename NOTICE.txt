@@ -1,0 +1,3 @@
+Nodulz is proprietary software. Distribution of the container image does not grant access to the private source repository or an open-source license to the application.
+Applicable terms and product documentation: https://nodulz.com
+Third-party components retain their respective licenses. Consult the release SBOM and the license files in the image's installed dependencies.

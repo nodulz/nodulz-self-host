@@ -1,0 +1,17 @@
+apiVersion: v2
+name: nodulz
+description: Workflow automation for self-hosted environments
+type: application
+version: 0.29.3
+appVersion: "0.29.3"
+home: https://nodulz.com
+keywords: [automation, workflows, self-hosted]
+sources:
+  - https://github.com/nodulz/nodulz-self-host
+annotations:
+  artifacthub.io/category: integration-delivery
+  artifacthub.io/links: |
+    - name: Installation
+      url: https://nodulz.com/docs/self-host-kubernetes
+    - name: GitHub Container Registry
+      url: https://github.com/orgs/nodulz/packages/container/package/nodulz

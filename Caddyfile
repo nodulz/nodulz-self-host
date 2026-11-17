@@ -1,0 +1,3 @@
+{$NODULZ_DOMAIN} {
+  reverse_proxy nodulz:3001
+}

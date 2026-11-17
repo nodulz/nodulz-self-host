@@ -1,0 +1,18 @@
+services:
+  nodulz:
+    ports: !reset []
+    environment:
+      NODULZ_PUBLIC_URL: https://${NODULZ_DOMAIN:?}
+  caddy:
+    image: caddy:2.10.2-alpine
+    restart: unless-stopped
+    ports: ["80:80", "443:443", "443:443/udp"]
+    environment:
+      NODULZ_DOMAIN: ${NODULZ_DOMAIN:?}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+volumes:
+  caddy_data:
+  caddy_config:

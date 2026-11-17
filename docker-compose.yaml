@@ -1,0 +1,22 @@
+name: nodulz
+services:
+  nodulz:
+    image: ghcr.io/nodulz/nodulz:${NODULZ_VERSION:?}
+    restart: unless-stopped
+    init: true
+    ports:
+      - "${NODULZ_PORT:-3001}:3001"
+    env_file: .env
+    environment:
+      NODULZ_PUBLIC_URL: ${NODULZ_PUBLIC_URL:?}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:?}
+      BETTER_AUTH_SECRET: ${BETTER_AUTH_SECRET:?}
+      CREDENTIALS_ENCRYPTION_KEY: ${CREDENTIALS_ENCRYPTION_KEY:?}
+      DATABASE_DRIVER: sqlite
+    volumes:
+      - nodulz_data:/app/data
+    security_opt: [no-new-privileges:true]
+    cap_drop: [ALL]
+    stop_grace_period: 60s
+volumes:
+  nodulz_data:

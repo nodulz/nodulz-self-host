@@ -1,0 +1,11 @@
+# Linux only. Use with docker-compose.yaml or docker-compose.postgres.yaml on a dedicated host.
+# The host and container must see the same files. This replaces the data mount.
+services:
+  nodulz:
+    group_add: ["${DOCKER_GID:?}"]
+    environment:
+      SCRIPT_RUNTIME: docker
+      NODULZ_DOCKER_HOST_DATA_ROOT: ${NODULZ_HOST_DATA_ROOT:?}
+    volumes:
+      - ${NODULZ_HOST_DATA_ROOT}:/app/data
+      - /var/run/docker.sock:/var/run/docker.sock

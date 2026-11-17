@@ -1,0 +1,5 @@
+{
+  "version": "0.29.3",
+  "image": "ghcr.io/nodulz/nodulz:0.29.3",
+  "digest": "sha256:118394ad07cc7c96463916761cbbb3b52f2861278380929b60e41e4a7ed629de"
+}
