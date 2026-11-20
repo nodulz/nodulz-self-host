@@ -52,6 +52,15 @@ spec:
             {{- with .Values.extraEnv }}
             {{- toYaml . | nindent 12 }}
             {{- end }}
+            {{- if .Values.playwright.enabled }}
+            - {name: PLAYWRIGHT_ENABLED, value: "true"}
+            {{- with .Values.playwright.image }}
+            - {name: PLAYWRIGHT_IMAGE, value: {{ . | quote }}}
+            {{- end }}
+            - {name: PLAYWRIGHT_PROXY, value: {{ printf "http://%s-playwright:3128" .Release.Name | quote }}}
+            - {name: PLAYWRIGHT_KUBE_SECCOMP, value: {{ required "playwright.seccompProfile is required" .Values.playwright.seccompProfile | quote }}}
+            - {name: PLAYWRIGHT_GIT_ORIGINS, value: {{ .Values.playwright.gitOrigins | quote }}}
+            {{- end }}
           {{- if .Values.existingSecret }}
           envFrom: [{secretRef: {name: {{ .Values.existingSecret }}}}]
           {{- end }}

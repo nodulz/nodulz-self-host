@@ -1,0 +1,27 @@
+# Add to the application Compose file and docker-compose.docker.yaml on Linux.
+services:
+  nodulz:
+    environment:
+      PLAYWRIGHT_ENABLED: "true"
+      PLAYWRIGHT_PROXY: http://playwright-gateway:3128
+      PLAYWRIGHT_GIT_ORIGINS: ${PLAYWRIGHT_GIT_ORIGINS:-}
+      PLAYWRIGHT_DOCKER_NETWORK: ${PLAYWRIGHT_DOCKER_NETWORK:-nodulz-playwright}
+      PLAYWRIGHT_DOCKER_SECCOMP: /etc/nodulz/playwright-seccomp.json
+    networks: [default, playwright]
+    volumes:
+      - ${PLAYWRIGHT_SECCOMP_FILE:?}:/etc/nodulz/playwright-seccomp.json:ro
+  playwright-gateway:
+    image: ghcr.io/nodulz/nodulz:${NODULZ_VERSION:?}
+    entrypoint: [bun, /app/deploy/playwright/gateway.mjs]
+    healthcheck: {disable: true}
+    environment:
+      PLAYWRIGHT_ALLOWED_ORIGINS: ${PLAYWRIGHT_ALLOWED_ORIGINS:?}
+      PLAYWRIGHT_DENIED_CIDRS: ${PLAYWRIGHT_DENIED_CIDRS:-}
+    networks: [playwright]
+    restart: unless-stopped
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+networks:
+  playwright:
+    name: ${PLAYWRIGHT_DOCKER_NETWORK:-nodulz-playwright}

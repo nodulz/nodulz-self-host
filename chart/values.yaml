@@ -1,7 +1,7 @@
 image:
   repository: ghcr.io/nodulz/nodulz
   tag: ""
-  digest: "sha256:118394ad07cc7c96463916761cbbb3b52f2861278380929b60e41e4a7ed629de"
+  digest: "sha256:673aafa827654a5613797d507b91bb217e4fe26fd323224957e1937d27757f5e"
 imagePullSecrets: []
 publicUrl: http://localhost:3001
 database:
@@ -16,6 +16,13 @@ persistence:
   size: 10Gi
 scripts:
   enabled: false
+playwright:
+  enabled: false
+  image: ""
+  seccompProfile: ""
+  allowedOrigins: ""
+  gitOrigins: ""
+  deniedCidrs: ""
 ingress:
   enabled: false
   className: ""
