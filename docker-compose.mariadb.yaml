@@ -1,0 +1,42 @@
+name: nodulz
+services:
+  nodulz:
+    image: ghcr.io/nodulz/nodulz:${NODULZ_VERSION:?}
+    restart: unless-stopped
+    init: true
+    ports:
+      - "${NODULZ_PORT:-3001}:3001"
+    env_file: .env
+    environment:
+      NODULZ_PUBLIC_URL: ${NODULZ_PUBLIC_URL:?}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:?}
+      BETTER_AUTH_SECRET: ${BETTER_AUTH_SECRET:?}
+      CREDENTIALS_ENCRYPTION_KEY: ${CREDENTIALS_ENCRYPTION_KEY:?}
+      DATABASE_DRIVER: mariadb
+      DATABASE_URL: mysql://nodulz:${MYSQL_PASSWORD:?}@mariadb:3306/nodulz
+    depends_on:
+      mariadb:
+        condition: service_healthy
+    volumes:
+      - nodulz_data:/app/data
+    security_opt: [no-new-privileges:true]
+    cap_drop: [ALL]
+    stop_grace_period: 60s
+  mariadb:
+    image: mariadb:11.4
+    restart: unless-stopped
+    environment:
+      MARIADB_DATABASE: nodulz
+      MARIADB_USER: nodulz
+      MARIADB_PASSWORD: ${MYSQL_PASSWORD:?}
+      MARIADB_RANDOM_ROOT_PASSWORD: "yes"
+    volumes:
+      - mariadb_data:/var/lib/mysql
+    healthcheck:
+      test: [CMD, healthcheck.sh, --connect, --innodb_initialized]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+volumes:
+  nodulz_data:
+  mariadb_data:

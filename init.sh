@@ -15,5 +15,6 @@ auth=$(openssl rand -hex 32)
 encryption=$(openssl rand -hex 32)
 admin=$(openssl rand -hex 24)
 postgres=$(openssl rand -hex 24)
-(set -C; printf 'NODULZ_VERSION=%s\nNODULZ_PUBLIC_URL=%s\nADMIN_EMAIL=%s\nBETTER_AUTH_SECRET=%s\nCREDENTIALS_ENCRYPTION_KEY=%s\nADMIN_PASSWORD=%s\nPOSTGRES_PASSWORD=%s\n' "$version" "$url" "$email" "$auth" "$encryption" "$admin" "$postgres" > .env)
+mysql=$(openssl rand -hex 24)
+(set -C; printf 'NODULZ_VERSION=%s\nNODULZ_PUBLIC_URL=%s\nADMIN_EMAIL=%s\nBETTER_AUTH_SECRET=%s\nCREDENTIALS_ENCRYPTION_KEY=%s\nADMIN_PASSWORD=%s\nPOSTGRES_PASSWORD=%s\nMYSQL_PASSWORD=%s\n' "$version" "$url" "$email" "$auth" "$encryption" "$admin" "$postgres" "$mysql" > .env)
 echo 'Created .env. Keep it private and back it up with your data.'

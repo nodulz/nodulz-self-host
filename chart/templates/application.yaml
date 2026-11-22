@@ -1,8 +1,8 @@
-{{- if not (has .Values.database.driver (list "sqlite" "postgres")) }}
-{{- fail "database.driver must be sqlite or postgres" }}
+{{- if not (has .Values.database.driver (list "sqlite" "postgres" "mysql" "mariadb")) }}
+{{- fail "database.driver must be sqlite, postgres, mysql or mariadb" }}
 {{- end }}
-{{- if and (eq .Values.database.driver "postgres") (not .Values.existingSecret) }}
-{{- fail "PostgreSQL requires existingSecret with connection and encryption secrets" }}
+{{- if and (ne .Values.database.driver "sqlite") (not .Values.existingSecret) }}
+{{- fail "An external database requires existingSecret with connection and encryption secrets" }}
 {{- end }}
 apiVersion: apps/v1
 kind: Deployment
