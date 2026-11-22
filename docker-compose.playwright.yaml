@@ -1,8 +1,7 @@
-# Add to the application Compose file and docker-compose.docker.yaml on Linux.
+# Optional filtering gateway for Playwright. Add to the application Compose file and docker-compose.docker.yaml on Linux.
 services:
   nodulz:
     environment:
-      PLAYWRIGHT_ENABLED: "true"
       PLAYWRIGHT_PROXY: http://playwright-gateway:3128
       PLAYWRIGHT_GIT_ORIGINS: ${PLAYWRIGHT_GIT_ORIGINS:-}
       PLAYWRIGHT_DOCKER_NETWORK: ${PLAYWRIGHT_DOCKER_NETWORK:-nodulz-playwright}
