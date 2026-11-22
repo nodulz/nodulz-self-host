@@ -2,11 +2,11 @@
 
 Visual workflow automation with integrations, Infrastructure as Code and execution history.
 
-This repository contains the deployment kit for **Nodulz 0.29.5**. Application sources remain private; installing Nodulz does not require source access, Bun or a registry login. See [NOTICE.txt](NOTICE.txt) for distribution terms.
+This repository contains the deployment kit for **Nodulz 0.29.6**. Application sources remain private; installing Nodulz does not require source access, Bun or a registry login. See [NOTICE.txt](NOTICE.txt) for distribution terms.
 
-- Application image: [`ghcr.io/nodulz/nodulz:0.29.5`](https://github.com/orgs/nodulz/packages/container/package/nodulz), Linux amd64.
-- Helm chart: `oci://ghcr.io/nodulz/charts/nodulz`, version `0.29.5`.
-- [Versioned downloads and SHA-256 checksums](https://github.com/nodulz/nodulz-self-host/releases/tag/v0.29.5).
+- Application image: [`ghcr.io/nodulz/nodulz:0.29.6`](https://github.com/orgs/nodulz/packages/container/package/nodulz), Linux amd64.
+- Helm chart: `oci://ghcr.io/nodulz/charts/nodulz`, version `0.29.6`.
+- [Versioned downloads and SHA-256 checksums](https://github.com/nodulz/nodulz-self-host/releases/tag/v0.29.6).
 - [Installation guide](https://nodulz.com/docs/installation) and [complete environment reference](https://nodulz.com/docs/self-host-configuration), available in French and English.
 
 The image serves the interface and API together on port 3001. The Free edition works without a license key or portal account.
@@ -16,13 +16,13 @@ The image serves the interface and API together on port 3001. The Free edition w
 With Docker Compose and OpenSSL installed:
 
 ```sh
-git clone --branch v0.29.5 https://github.com/nodulz/nodulz-self-host.git
+git clone --branch v0.29.6 https://github.com/nodulz/nodulz-self-host.git
 cd nodulz-self-host
 sh init.sh
 docker compose -f docker-compose.postgres.yaml up -d
 ```
 
-Enter `0.29.5` when the initializer asks for the version. It creates a private `.env` with the administrator password, both instance encryption/authentication secrets and the PostgreSQL password. Use the public URL and administrator credentials configured there to sign in. `docker-compose.yaml` provides the SQLite alternative.
+Enter `0.29.6` when the initializer asks for the version. It creates a private `.env` with the administrator password, both instance encryption/authentication secrets and the PostgreSQL password. Use the public URL and administrator credentials configured there to sign in. `docker-compose.yaml` provides the SQLite alternative.
 
 For manual configuration, set `ADMIN_PASSWORD` to a unique password of 8–128 characters. The image rejects blank values and the old example `change-me-123`. If startup reports an invalid password, update `.env` and run `docker compose up -d` again with the same Compose files.
 
@@ -34,7 +34,7 @@ Prepare the `nodulz-instance` Secret and `values.yaml` using the [Kubernetes gui
 
 ```sh
 helm install nodulz oci://ghcr.io/nodulz/charts/nodulz \
-  --version 0.29.5 -n nodulz --create-namespace -f values.yaml --wait --timeout 5m
+  --version 0.29.6 -n nodulz --create-namespace -f values.yaml --wait --timeout 5m
 ```
 
 The chart supports SQLite or an external PostgreSQL database. It requires persistent storage and an existing instance Secret.
