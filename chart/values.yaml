@@ -1,7 +1,7 @@
 image:
   repository: ghcr.io/nodulz/nodulz
   tag: ""
-  digest: "sha256:e666ae50c14695343beb27f1b3ce9dd8e672bf7583fbb2f9b22bfebec5a256e5"
+  digest: "sha256:1f00f7ac6ac8118cc282205d62b141ab5ee5cebb54a35d3cc243a2cd8dc370c2"
 imagePullSecrets: []
 publicUrl: http://localhost:3001
 database:

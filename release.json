@@ -1,5 +1,5 @@
 {
-  "version": "0.29.8",
-  "image": "ghcr.io/nodulz/nodulz:0.29.8",
-  "digest": "sha256:e666ae50c14695343beb27f1b3ce9dd8e672bf7583fbb2f9b22bfebec5a256e5"
+  "version": "0.29.9",
+  "image": "ghcr.io/nodulz/nodulz:0.29.9",
+  "digest": "sha256:1f00f7ac6ac8118cc282205d62b141ab5ee5cebb54a35d3cc243a2cd8dc370c2"
 }

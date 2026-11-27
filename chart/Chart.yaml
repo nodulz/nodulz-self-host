@@ -2,8 +2,8 @@ apiVersion: v2
 name: nodulz
 description: Workflow automation for self-hosted environments
 type: application
-version: 0.29.8
-appVersion: "0.29.8"
+version: 0.29.9
+appVersion: "0.29.9"
 home: https://nodulz.com
 keywords: [automation, workflows, self-hosted]
 sources:
